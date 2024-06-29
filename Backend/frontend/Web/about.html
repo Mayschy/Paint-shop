@@ -1,0 +1,106 @@
+<!-- about.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" media="screen" href="styles.css">
+    <link rel="stylesheet" media="handheld" href="handled-styles.css">
+    <link rel="stylesheet" media="print" href="print-styles.css">
+    <title>About Us</title>
+   <style>
+
+   .footer{
+    top: 200px;
+}
+</style> 
+</head>
+<body style="background-image: url('rep/bg-4.jpg');  background-size:100%;">
+    <header>
+        <div class="header-banner">
+            <button class="header-btn" onclick="window.location.href='index.html'">HOME</button>
+            <button class="header-btn" onclick="window.location.href='about.html'">ABOUT</button>
+            <button class="header-btn" onclick="window.location.href='faq.html'">FAQ</button>
+        </div>
+        <div class="header-buttons">
+            <button class="login-btn" onclick="window.location.href='login.html'">Login</button>
+            <a href="#" class="cart-icon"><img src="rep/busketicon.png" alt="Cart"></a>
+        </div>
+    </header>
+    <div class="cart-popup">
+        <div class="cart-header">Your Cart</div>
+        <div class="cart-content">Your cart is currently empty.</div>
+        <div class="close-btn">X</div>
+    </div>
+    
+    <section class="about-section">
+        <div class="artist-info left">
+            <img src="rep/artist1.jpg" alt="Artist 1">
+            <div class="artist-text">
+                <h2>Artist Introduction</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ultricies turpis id lacus consequat, id fringilla justo scelerisque. Mauris quis fermentum leo. Aliquam erat volutpat. Sed eleifend euismod dui, nec ultricies nisl hendrerit non. Duis faucibus sapien vel diam viverra, sit amet ultricies velit dignissim. Nulla vitae pharetra eros. Suspendisse potenti.</p>
+            </div>
+        </div>
+        <div class="artist-info right">
+            <img src="rep/artist2.jpg" alt="Artist 2">
+            <div class="artist-text">
+                <h2>Artwork Showcase</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ultricies turpis id lacus consequat, id fringilla justo scelerisque. Mauris quis fermentum leo. Aliquam erat volutpat. Sed eleifend euismod dui, nec ultricies nisl hendrerit non. Duis faucibus sapien vel diam viverra, sit amet ultricies velit dignissim. Nulla vitae pharetra eros. Suspendisse potenti.</p>
+            </div>
+        </div>
+        <div class="artist-info left">
+            <img src="rep/artist1.jpg" alt="Artist 3">
+            <div class="artist-text">
+                <h2>Artist Introduction</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ultricies turpis id lacus consequat, id fringilla justo scelerisque. Mauris quis fermentum leo. Aliquam erat volutpat. Sed eleifend euismod dui, nec ultricies nisl hendrerit non. Duis faucibus sapien vel diam viverra, sit amet ultricies velit dignissim. Nulla vitae pharetra eros. Suspendisse potenti.</p>
+            </div>
+        </div>
+        <div class="artist-info right">
+            <img src="rep/artist1.jpg" alt="Artist 4">
+            <div class="artist-text">
+                <h2>Artist Introduction</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ultricies turpis id lacus consequat, id fringilla justo scelerisque. Mauris quis fermentum leo. Aliquam erat volutpat. Sed eleifend euismod dui, nec ultricies nisl hendrerit non. Duis faucibus sapien vel diam viverra, sit amet ultricies velit dignissim. Nulla vitae pharetra eros. Suspendisse potenti.</p>
+            </div>
+        </div>
+    </section>
+    
+
+
+        <footer class="footer">
+            <div class="footer-info">
+                <p class="title-footer">Hand painted arts for your design</p>
+                <p> </p>
+                          
+                    <p class="Hello-footer">Hi! My name is Mila.</p>
+                    
+                    <p class="info-footer">I am an illustrator and artist of flora. I like to draw flowers and convey the beauty of nature in my drawing projects.
+                        I will be glad when my arts will help in your design.</p>  
+            </div>
+            <div class="empty-space1"></div> 
+            <button class="contact-btn" onclick="window.location.href='JavaScript.html'">JavaScript</button>
+            <div class="empty-space2"></div> 
+            <button class="contact-btn" onclick="window.location.href='contact.html'">Contact</button>
+            <div class="empty-space2"></div> 
+        </footer>
+
+
+        <script src="script.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const cartIcon = document.querySelector('.cart-icon');
+                const cartPopup = document.querySelector('.cart-popup');
+                const closeBtn = document.querySelector('.close-btn');
+    
+                cartIcon.addEventListener('click', function() {
+                    cartPopup.classList.toggle('open');
+                });
+    
+                closeBtn.addEventListener('click', function() {
+                    cartPopup.classList.remove('open');
+                });
+            });
+        </script>
+        
+
+</body>
+</html>

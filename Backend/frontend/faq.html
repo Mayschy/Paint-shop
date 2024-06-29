@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" media="screen" href="styles.css">
+    <title>FAQ</title>
+    <style>
+        .footer {
+            top: 100px;
+        }
+    </style>
+</head>
+<body style="background-image: url('rep/фон1.jpg'); background-size: 70%;">
+     <header>
+        <div class="header-banner">
+            <button class="header-btn" onclick="window.location.href='index.html'">HOME</button>
+            <button class="header-btn" onclick="window.location.href='about.html'">ABOUT</button>
+            <button class="header-btn" onclick="window.location.href='faq.html'">FAQ</button>
+        </div>
+        <div class="header-buttons">
+            <div id="userGreeting"></div>
+            <button id="loginLogoutBtn" class="login-btn">Login</button>
+            <a href="#" class="cart-icon"><img src="rep/busketicon.png" alt="Cart"></a>
+        </div>
+    </header>
+    <div class="cart-popup">
+        <div class="cart-header">Your Cart</div>
+        <div class="cart-content">Your cart is currently empty.</div>
+        <div class="close-btn">X</div>
+    </div>
+    
+    <div class="free"></div>
+    <div class="faq-section">
+        <div class="faq-item"  style="margin-top: 70px;" >
+            <div class="faq-header" onclick="toggleFaq('licenses')">
+                <h3>Licenses <span class="triangle" id="triangle-licenses">&#9660;</span></h3>
+            </div>
+            <ul class="faq-content" id="licenses" style="display: none;">
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget mauris id lorem pulvinar maximus.</li>
+                <li>Nulla nec augue auctor, sollicitudin dolor non, varius velit. Integer sit amet mauris vel odio laoreet consequat.</li>
+                <li>Phasellus tempor, risus vitae accumsan convallis, erat ligula gravida tortor, at consequat elit odio id nisi.</li>
+                <li>Proin quis purus ultricies, condimentum quam vel, tristique ipsum. Fusce sed luctus lectus.</li>
+                <li>Aliquam viverra massa ac justo tincidunt, et tristique neque viverra.</li>
+            </ul>
+        </div>
+        <div class="faq-item">
+            <div class="faq-header" onclick="toggleFaq('privacy')">
+                <h3>Privacy Policy <span class="triangle" id="triangle-privacy">&#9660;</span></h3>
+            </div>
+            <ul class="faq-content" id="privacy" style="display: none;">
+                <li>Integer nec magna nec ipsum luctus posuere.</li>
+                <li>Ut rhoncus orci id est molestie, nec dictum tortor aliquet.</li>
+                <li>Donec eget sem ac magna ullamcorper rhoncus a ac tortor.</li>
+                <li>Fusce dictum erat sit amet tellus vehicula convallis.</li>
+                <li>Curabitur quis est non est fermentum gravida sed et libero.</li>
+            </ul>
+        </div>
+        <div class="faq-item">
+            <div class="faq-header" onclick="toggleFaq('payment')">
+                <h3>Payment Method <span class="triangle" id="triangle-payment">&#9660;</span></h3>
+            </div>
+            <ul class="faq-content" id="payment" style="display: none;">
+                <li>Suspendisse in est vitae sapien maximus lobortis.</li>
+                <li>Nulla efficitur mauris vel tortor consectetur, sit amet blandit nunc fermentum.</li>
+                <li>Vestibulum non dui nec sem lobortis bibendum.</li>
+                <li>Morbi lacinia nulla nec mi laoreet, in hendrerit risus vehicula.</li>
+                <li>Integer vitae felis id mi cursus consequat vel nec elit.</li>
+            </ul>
+        </div>
+    </div>
+    <!-- После разделов FAQ -->
+    <div class="banner">
+        <div class="banner-content">
+            <p></p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-info">
+            <p class="title-footer">Hand painted arts for your design</p>
+            <p> </p>
+            <p class="Hello-footer">Hi! My name is Mila.</p>
+            <p class="info-footer">I am an illustrator and artist of flora. I like to draw flowers and convey the beauty of nature in my drawing projects. I will be glad when my arts will help in your design.</p>
+        </div>
+        <div class="empty-space1"></div> 
+        <div class="empty-space2"></div> 
+        <button class="contact-btn" onclick="window.location.href='contact.html'">Contact</button>
+        <div class="empty-space2"></div> 
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartIcon = document.querySelector('.cart-icon');
+            const cartPopup = document.querySelector('.cart-popup');
+            const closeBtn = document.querySelector('.close-btn');
+
+            cartIcon.addEventListener('click', function() {
+                // Check if user is logged in
+                const token = localStorage.getItem('token');
+                if (token) {
+                    window.location.href = 'cart.html'; // Redirect to cart page
+                } else {
+                    window.location.href = 'login.html'; // Redirect to login page if not logged in
+                }
+            });
+
+            closeBtn.addEventListener('click', function() {
+                cartPopup.classList.remove('open');
+            });
+        });
+
+        function toggleFaq(id) {
+            var element = document.getElementById(id);
+            var triangle = document.getElementById('triangle-' + id);
+            if (element.style.display === "none") {
+                element.style.display = "block";
+                triangle.style.transform = "rotate(0deg)";
+            } else {
+                element.style.display = "none";
+                triangle.style.transform = "rotate(-90deg)";
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            const loginLogoutBtn = document.getElementById('loginLogoutBtn');
+
+            function updateUIForLoggedInUser(user) {
+                document.getElementById('userGreeting').textContent = 'Hello, ' + user.fullname;
+                loginLogoutBtn.textContent = 'Logout';
+                loginLogoutBtn.removeEventListener('click', redirectToLogin);
+                loginLogoutBtn.addEventListener('click', handleLogout);
+            }
+
+            function updateUIForLoggedOutUser() {
+                document.getElementById('userGreeting').textContent = '';
+                loginLogoutBtn.textContent = 'Login';
+                loginLogoutBtn.removeEventListener('click', handleLogout);
+                loginLogoutBtn.addEventListener('click', redirectToLogin);
+            }
+
+            async function checkLoggedInUser() {
+                const token = localStorage.getItem('token');
+                if (token) {
+                    try {
+                        const response = await fetch('http://127.0.0.1:8080/api/me', {
+                            method: 'GET',
+                            headers: {
+                                'Authorization': token
+                            }
+                        });
+
+                        if (response.ok) {
+                            const user = await response.json();
+                            updateUIForLoggedInUser(user);
+                        } else {
+                            throw new Error('Failed to fetch user');
+                        }
+                    } catch (error) {
+                        console.error('Error fetching user:', error);
+                        updateUIForLoggedOutUser();
+                    }
+                } else {
+                    updateUIForLoggedOutUser();
+                }
+            }
+
+            function redirectToLogin() {
+                window.location.href = 'login.html';
+            }
+
+            async function handleLogout() {
+                try {
+                    const response = await fetch('http://127.0.0.1:8080/api/logout', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': localStorage.getItem('token')
+                        }
+                    });
+
+                    if (response.ok) {
+                        alert('Logged out successfully');
+                        localStorage.removeItem('token');
+                        updateUIForLoggedOutUser();
+                    } else {
+                        throw new Error('Failed to logout');
+                    }
+                } catch (error) {
+                    console.error('Error logging out:', error);
+                    alert('Logout failed: ' + error.message);
+                }
+            }
+
+            await checkLoggedInUser();
+        });
+    </script>
+</body>
+</html>

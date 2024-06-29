@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" media="screen" href="styles.css">
+  <title>Art Cards Store</title>
+  <style>
+    .footer {
+      top: 200px;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      margin-top: 20px;
+    }
+    .product {
+      margin: 10px;
+      text-align: center;
+    }
+    .product img {
+      width: 300px;
+      height: 300px;
+    }
+    .product-price {
+      font-size: 18px;
+      color: #333;
+    }
+  </style>
+</head>
+<body style="background-image: url('rep/фон1.jpg'); background-size: 70%;">
+  <header>
+    <div class="header-banner">
+      <button class="header-btn" onclick="window.location.href='index.html'">HOME</button>
+      <button class="header-btn" onclick="window.location.href='about.html'">ABOUT</button>
+      <button class="header-btn" onclick="window.location.href='faq.html'">FAQ</button>
+    </div>
+    <div class="header-buttons">
+      <div id="userGreeting"></div>
+      <button id="loginLogoutBtn" class="login-btn">Login</button>
+      <a href="#" class="cart-icon"><img src="rep/busketicon.png" alt="Cart"></a>
+    </div>
+  </header>
+
+  <div class="container" id="paintings-container">
+    <p class="loading-message">Loading paintings...</p>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-info">
+      <p class="title-footer">Hand painted arts for your design</p>
+      <p class="Hello-footer">Hi! My name is Mila.</p>
+      <p class="info-footer">I am an illustrator and artist of flora. I like to draw flowers and convey the beauty of nature in my drawing projects. I will be glad when my arts will help in your design.</p>
+    </div>
+    <div class="empty-space1"></div>
+    <div class="empty-space2"></div>
+    <button class="contact-btn" onclick="window.location.href='contact.html'">Contact</button>
+    <div class="empty-space2"></div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const cartIcon = document.querySelector('.cart-icon');
+
+      cartIcon.addEventListener('click', function(event) {
+        event.preventDefault();  // предотвращаем переход по ссылке
+        checkUserAndRedirect();
+      });
+
+      loadPaintings();
+    });
+
+    async function loadPaintings() {
+      const container = document.getElementById('paintings-container');
+      try {
+        const response = await fetch('http://127.0.0.1:8080/api/paintings');
+        if (!response.ok) {
+          throw new Error('Network response was not ok ' + response.statusText);
+        }
+        const paintings = await response.json();
+        container.innerHTML = '';
+        if (paintings.length === 0) {
+          container.innerHTML = '<p>No paintings available</p>';
+          return;
+        }
+        paintings.forEach(painting => {
+          const productDiv = document.createElement('div');
+          productDiv.classList.add('product');
+          const imageUrl = painting.imageUrls.length > 0 ? painting.imageUrls[0] : 'rep/default-image.png';
+          productDiv.innerHTML = `
+            <a href="product.html?id=${painting._id}"><img src="${imageUrl}" alt="${painting.title}"></a>
+            <p class="product-price">$${painting.price.toFixed(2)}</p>
+          `;
+          container.appendChild(productDiv);
+        });
+      } catch (error) {
+        console.error('Failed to load paintings:', error);
+        container.innerHTML = '<p>Failed to load paintings</p>';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', async function() {
+      const loginLogoutBtn = document.getElementById('loginLogoutBtn');
+
+      function updateUIForLoggedInUser(user) {
+        document.getElementById('userGreeting').textContent = 'Hello, ' + user.fullname;
+        loginLogoutBtn.textContent = 'Logout';
+        loginLogoutBtn.removeEventListener('click', redirectToLogin);
+        loginLogoutBtn.addEventListener('click', handleLogout);
+      }
+
+      function updateUIForLoggedOutUser() {
+        document.getElementById('userGreeting').textContent = '';
+        loginLogoutBtn.textContent = 'Login';
+        loginLogoutBtn.removeEventListener('click', handleLogout);
+        loginLogoutBtn.addEventListener('click', redirectToLogin);
+      }
+
+      async function checkLoggedInUser() {
+        const token = localStorage.getItem('token');
+        if (token) {
+          try {
+            const response = await fetch('http://127.0.0.1:8080/api/me', {
+              method: 'GET',
+              headers: {
+                'Authorization': token
+              }
+            });
+
+            if (response.ok) {
+              const user = await response.json();
+              updateUIForLoggedInUser(user);
+            } else {
+              throw new Error('Failed to fetch user');
+            }
+          } catch (error) {
+            console.error('Error fetching user:', error);
+            updateUIForLoggedOutUser();
+          }
+        } else {
+          updateUIForLoggedOutUser();
+        }
+      }
+
+      function redirectToLogin() {
+        window.location.href = 'login.html';
+      }
+
+      async function handleLogout() {
+        try {
+          const response = await fetch('http://127.0.0.1:8080/api/logout', {
+            method: 'POST',
+            headers: {
+              'Authorization': localStorage.getItem('token')
+            }
+          });
+
+          if (response.ok) {
+            alert('Logged out successfully');
+            localStorage.removeItem('token');
+            updateUIForLoggedOutUser();
+          } else {
+            throw new Error('Failed to logout');
+          }
+        } catch (error) {
+          console.error('Error logging out:', error);
+          alert('Logout failed: ' + error.message);
+        }
+      }
+
+      await checkLoggedInUser();
+    });
+
+    async function checkUserAndRedirect() {
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          const response = await fetch('http://127.0.0.1:8080/api/me', {
+            method: 'GET',
+            headers: {
+              'Authorization': token
+            }
+          });
+
+          if (response.ok) {
+            window.location.href = 'cart.html';
+          } else {
+            window.location.href = 'login.html';
+          }
+        } catch (error) {
+          console.error('Error checking user:', error);
+          window.location.href = 'login.html';
+        }
+      } else {
+        window.location.href = 'login.html';
+      }
+    }
+  </script>
+
+</body>
+</html>

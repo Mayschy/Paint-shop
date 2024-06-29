@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product one</title>
+    <link rel="stylesheet" media="screen" href="styles.css">
+    <link rel="stylesheet" media="handheld" href="handled-styles.css">
+    <link rel="stylesheet" media="print" href="print-styles.css">
+</head>
+<body style="background-image: url('rep/bb3.jpg');  background-size:100%;">
+
+    <header>
+        <div class="header-banner">
+            <button class="header-btn" onclick="window.location.href='index.html'">HOME</button>
+            <button class="header-btn" onclick="window.location.href='about.html'">ABOUT</button>
+            <button class="header-btn" onclick="window.location.href='faq.html'">FAQ</button>
+        </div>
+        <div class="header-buttons">
+            <button class="login-btn" onclick="window.location.href='login.html'">Login</button>
+            <a href="#" class="cart-icon"><img src="rep/busketicon.png" alt="Cart"></a>
+        </div>
+    </header>
+    <div class="cart-popup">
+        <div class="cart-header">Your Cart</div>
+        <div class="cart-content">Your cart is currently empty.</div>
+        <div class="close-btn">X</div>
+    </div>
+    
+    <main>
+        <div class="product-containerSALE">
+            <div class="product-imageSALE">
+                <img id="main-imageSALE" src="rep/prod0.png" alt="Product"> 
+            </div>
+            <div class="thumbnails">
+
+                <img class="thumbnail" src="rep/prod1.jpg" alt="Thumbnail 1" onclick="changeImage('rep/prod1.jpg')">
+                <img class="thumbnail" src="rep/prod2.jpg" alt="Thumbnail 2" onclick="changeImage('rep/prod2.jpg')">
+                <img class="thumbnail" src="rep/prod3.jpg" alt="Thumbnail 3" onclick="changeImage('rep/prod3.jpg')">
+            </div>
+            <div class="product-detailsSALE">
+                <select id="product-type" onchange="updatePrice()">
+                    <option value="digital">Digital</option>
+                    <option value="print">Print</option>
+                    <option value="original">Original Hand-Made Paint</option>
+                </select>
+                <div id="product-price">
+                    $15
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="footer-info">
+            <p class="title-footer">Hand painted arts for your design</p>
+            <p> </p>
+            <p class="Hello-footer">Hi! My name is Mila.</p>
+            <p class="info-footer">I am an illustrator and artist of flora. I like to draw flowers and convey the beauty of nature in my drawing projects. I will be glad when my arts will help in your design.</p>
+        </div>
+        <div class="empty-space1"></div> 
+            <button class="contact-btn" onclick="window.location.href='JavaScript.html'">JavaScript</button>
+            <div class="empty-space2"></div> 
+            <button class="contact-btn" onclick="window.location.href='contact.html'">Contact</button>
+            <div class="empty-space2"></div> 
+    </footer>
+<script>
+    function updatePrice() {
+        var selectElement = document.getElementById("product-type");
+        var priceElement = document.getElementById("product-price");
+
+        if (selectElement.value === "digital") {
+            priceElement.textContent = "$15";
+        } else if (selectElement.value === "print") {
+            priceElement.textContent = "$30";
+        } else if (selectElement.value === "original") {
+            priceElement.textContent = "$100";
+        }
+        
+    }
+    function changeImage(imageUrl) {
+        var mainImage = document.getElementById("main-imageSALE");
+        mainImage.src = imageUrl;
+    }
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cartIcon = document.querySelector('.cart-icon');
+        const cartPopup = document.querySelector('.cart-popup');
+        const closeBtn = document.querySelector('.close-btn');
+
+        cartIcon.addEventListener('click', function() {
+            cartPopup.classList.toggle('open');
+        });
+
+        closeBtn.addEventListener('click', function() {
+            cartPopup.classList.remove('open');
+        });
+    });
+    
+</script>
+</body>
+</html>

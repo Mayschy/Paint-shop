@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" media="screen" href="styles.css">
+    <link rel="stylesheet" media="handheld" href="handled-styles.css">
+    <link rel="stylesheet" media="print" href="print-styles.css">
+    <title>JavaScript</title>
+    <style>
+       
+       body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5dc; 
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin-top: 200px;
+    align-content: center;
+    max-width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    padding: 20px;
+    background-color: #ffffffd7; 
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+form {
+    
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"] {
+    width: 50%;
+    align-items: center;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #f1d6adf1;
+    border-radius: 5px;
+}
+
+button { 
+    padding: 8px 15px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f5e76d; 
+    color: #000000;
+}
+
+button:hover {
+    background-color: #aca10a; 
+}
+
+a {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #e79b44; 
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+a:hover {
+    background-color: #b15c0e; 
+}
+#dateContainer {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    cursor: default;
+}
+
+#dateContainer:hover {
+    background-color: #e8e8e8;
+}
+.logo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  width: 400px;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-top: 10%;
+}
+.hover-crown{
+  position: absolute;
+  z-index: 1;
+  margin-top: -400px;
+}
+.kolo {
+  z-index: 0
+}
+.hover-butterfly
+{
+  position: absolute;
+  margin-top: 300px;;
+  z-index: 2
+}
+.hover-crown:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+.hover-butterfly:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-banner">
+            <button class="header-btn" onclick="window.location.href='index.html'">HOME</button>
+            <button class="header-btn" onclick="window.location.href='about.html'">ABOUT</button>
+            <button class="header-btn" onclick="window.location.href='faq.html'">FAQ</button>
+        </div>
+        <div class="header-buttons">
+            <button class="login-btn" onclick="window.location.href='login.html'">Login</button>
+            <a href="#" class="cart-icon"><img src="rep/busketicon.png" alt="Cart"></a>
+        </div>
+    </header>
+    <div class="cart-popup">
+        <div class="cart-header">Your Cart</div>
+        <div class="cart-content">Your cart is currently empty.</div>
+        <div class="close-btn">X</div>
+    </div>
+
+    <div class="container">
+        <form id="myForm">
+            <label for="inputField">Input:</label>
+            <input type="text" id="inputField">
+            <button type="button" id="okButton">Start</button>
+            <button type="button" id="cancelButton">Clean</button>
+        </form>
+        
+        <form id="myForm2">
+            <label for="inputField2">Input 2:</label>
+            <input type="text" id="inputField2">
+            <button type="button" id="okButton2">Start 2</button>
+            <button type="button" id="cancelButton2">Clean 2</button>
+        </form>
+        
+        <a href="#" id="infoLink">Info</a>
+        <div id="dateContainer"></div>
+
+
+</div>
+<div class="logo">
+
+  <img style="height: 100; width: auto;" src="Asset2.png" alt="Корона с венками" class="hover-crown">
+  <img style="height: 300; width: auto;" src="Asset3.png" alt="Бабочка" class="hover-butterfly">
+  <img style="height: 400; width: auto;" src="Asset1.png" alt="Круг" class="kolo">
+</div>
+
+
+    <script src="lr4.js">
+        
+        </script>
+        
+</body>
+</html>

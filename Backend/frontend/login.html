@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" media="screen" href="styles.css">
+    <title>Art Cards Store</title>
+    <style>
+        body {
+            background-image: url('rep/bg-4.jpg');
+            background-size: 70%;
+        }
+        .footer {
+            position: relative;
+        }
+        .login-container {
+            margin-top: -100px;
+            position: absolute;
+            padding: 30px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background-color: rgba(247, 240, 205, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        .login-input {
+            margin-bottom: 20px;
+            padding: 10px;
+            width: 300px;
+            border: none;
+            border-bottom: 2px solid #333;
+            outline: none;
+            font-size: 18px;
+            background-color: rgba(247, 240, 205, 0.8);
+        }
+        .login-btn2 {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: rgba(247, 240, 205, 0.8);
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.5s ease;
+        }
+        .login-btn2:hover {
+            background-color: #555;
+        }
+        .login-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .decoration-frames {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .decoration-frame-left,
+        .decoration-frame-right {
+            display: flex;
+            justify-content: center;
+            margin-top: 200px;
+            padding: 250px;
+        }
+        .registration-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 500px;
+            height: 900px;
+            transform: translate(-50%, -50%);
+            background-color: rgb(247, 240, 205);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            display: none;
+        }
+        .register-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            background-color: #fcf5d0;
+            color: rgba(31, 31, 30, 0.8);
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.5s ease;
+        }
+        .register-btn:hover {
+            background-color: #c5c4b6;
+        }
+        .registration-popup.open {
+            display: block;
+        }
+        .registration-popup label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .registration-popup input[type="text"],
+        .registration-popup input[type="email"],
+        .registration-popup input[type="password"],
+        .registration-popup select,
+        .registration-popup textarea {
+            margin-bottom: 20px;
+            padding: 10px;
+            width: 400px;
+            border: none;
+            border-bottom: 2px solid #333;
+            outline: none;
+            font-size: 18px;
+            background-color: rgba(247, 240, 205, 0.8);
+        }
+        .registration-popup button[type="submit"] {
+            display: block;
+            padding: 15px 30px;
+            border: none;
+            justify-content: center;
+            border-radius: 5px;
+            background-color: #333;
+            color: rgba(247, 240, 205, 0.8);
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-banner">
+            <button class="header-btn" onclick="window.location.href='index.html'">HOME</button>
+            <button class="header-btn" onclick="window.location.href='about.html'">ABOUT</button>
+            <button class="header-btn" onclick="window.location.href='faq.html'">FAQ</button>
+        </div>
+        <div class="header-buttons">
+            <button class="login-btn" onclick="window.location.href='login.html'">Login</button>
+            <a href="#" class="cart-icon"><img src="rep/busketicon.png" alt="Cart"></a>
+        </div>
+    </header>
+    <div class="cart-popup">
+        <div class="cart-header">Your Cart</div>
+        <div class="cart-content">Your cart is currently empty.</div>
+        <div class="close-btn">X</div>
+    </div>
+    <div class="login-wrapper">
+      <div class="decoration-frames">
+          <div class="decoration-frame-left">
+              <img height="1100" width="auto" src="rep/grass9.png" alt="">
+          </div>
+          <div class="decoration-frame-right">
+              <img height="1100" width="auto" src="rep/grass10.png" alt="">
+          </div>
+      </div>
+      <div class="login-container">
+          <h2>Login</h2>
+          <form>
+              <label for="login-email">Email:</label><br>
+              <input type="email" id="login-email" name="email" class="login-input" required><br>
+              <label for="login-password">Password:</label><br>
+              <input type="password" id="login-password" name="password" class="login-input" required><br><br>
+              <button type="submit" class="login-btn2">Login</button>
+          </form>
+          <p style="font-size: 18; margin-top: 30px;">Don't have an account?
+              <button class="register-btn">Register</button>
+          </p>
+      </div>
+  </div>
+  <div class="registration-popup">
+      <div class="close-btn">&#10006;</div>
+      <form>
+          <h2>Register Now</h2>
+          <label for="register-fullname">Full Name:</label>
+          <input type="text" id="register-fullname" name="fullname" required><br>
+          <label for="register-email">Email:</label>
+          <input type="email" id="register-email" name="email" required><br>
+          <label for="register-username">Username:</label>
+          <input type="text" id="register-username" name="username" required><br>
+          <label for="register-password">Password:</label>
+          <input type="password" id="register-password" name="password" required><br>
+          <label for="register-address">Address:</label>
+          <textarea id="register-address" name="address" rows="3" required></textarea><br>
+          <button type="submit">Register</button>
+      </form>
+  </div>
+  
+  <footer class="footer">
+      <div class="footer-info">
+          <p class="title-footer">Hand painted arts for your design</p>
+          <p></p>
+          <p class="Hello-footer">Hi! My name is Mila.</p>
+          <p class="info-footer">I am an illustrator and artist of flora. I like to draw flowers and convey the beauty of nature in my drawing projects. I will be glad when my arts will help in your design.</p>
+      </div>
+      <div class="empty-space1"></div>
+      <button class="contact-btn" onclick="window.location.href='JavaScript.html'">JavaScript</button>
+      <div class="empty-space2"></div>
+      <button class="contact-btn" onclick="window.location.href='contact.html'">Contact</button>
+      <div class="empty-space2"></div>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const registerBtn = document.querySelector('.register-btn');
+        const registrationPopup = document.querySelector('.registration-popup');
+        const closeBtns = document.querySelectorAll('.registration-popup .close-btn');
+        const loginForm = document.querySelector('.login-container form');
+        const registerForm = document.querySelector('.registration-popup form');
+    
+        registerBtn.addEventListener('click', function() {
+            registrationPopup.classList.toggle('open');
+        });
+    
+        closeBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                registrationPopup.classList.remove('open');
+            });
+        });
+    
+        loginForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const email = document.querySelector('#login-email').value;
+            const password = document.querySelector('#login-password').value;
+    
+            try {
+                const response = await fetch('http://127.0.0.1:8080/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+    
+                const result = await response.json();
+                if (response.ok) {
+                    alert('Login successful!');
+                    localStorage.setItem('token', result.token);
+                    window.location.href = 'index.html';  // Перенаправление на главную страницу
+                } else {
+                    alert('Login failed: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Error logging in:', error);
+                alert('Login failed: ' + error.message);
+            }
+        });
+    
+        registerForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const fullname = document.querySelector('#register-fullname').value;
+            const username = document.querySelector('#register-username').value;
+            const email = document.querySelector('#register-email').value;
+            const password = document.querySelector('#register-password').value;
+            const address = document.querySelector('#register-address').value;
+    
+            try {
+                const response = await fetch('http://127.0.0.1:8080/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ fullname, username, email, password, address })
+                });
+    
+                const result = await response.json();
+                if (response.ok) {
+                    alert('Registration successful!');
+                    registrationPopup.classList.remove('open');
+                } else {
+                    alert('Registration failed: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Error registering:', error);
+                alert('Registration failed: ' + error.message);
+            }
+        });
+    });
+    </script>
+    
+  
+</body>
+</html>
